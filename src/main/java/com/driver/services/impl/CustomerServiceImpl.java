@@ -101,6 +101,6 @@ public class CustomerServiceImpl implements CustomerService {
 	 Driver driver = tripBooking.getDriver();
 	 Cab cab = driver.getCab();
 
-	 cab.setAvailable(false);
+	 cab.setAvailable(true);
 	}
 }
