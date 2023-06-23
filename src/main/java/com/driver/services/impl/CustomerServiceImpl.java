@@ -48,6 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
 		for(Driver driver : driverList) {
 			if (driver.getCab().getAvailable() == true && driverId > driver.getDriverId()) {
 				driver1 = driver;
+				driverId = driver.getDriverId();
 			}
 		}
 	   if(driver1 == null) throw new Exception("No cab available!");
@@ -57,9 +58,6 @@ public class CustomerServiceImpl implements CustomerService {
 	   tripBooking.setFromLocation(fromLocation);
 	   tripBooking.setToLocation(toLocation);
 	   tripBooking.setDistanceInKm(distanceInKm);
-
-	   int fare = distanceInKm*10;
-	   tripBooking.setBill(fare);
 	   tripBooking.setStatus(TripStatus.CONFIRMED);
 
 	   Customer customer = customerRepository2.findById(customerId).get();
@@ -98,8 +96,12 @@ public class CustomerServiceImpl implements CustomerService {
       TripBooking tripBooking = tripBookingRepository2.findById(tripId).get();
       tripBooking.setStatus(TripStatus.COMPLETED);
 
+
 	 Driver driver = tripBooking.getDriver();
 	 Cab cab = driver.getCab();
+
+	 int fare = driver.getCab().getPerKmRate()*tripBooking.getDistanceInKm();
+	 tripBooking.setBill(fare);
 
 	 cab.setAvailable(true);
 	}
