@@ -46,14 +46,13 @@ public class CustomerServiceImpl implements CustomerService {
 		int driverId = Integer.MAX_VALUE;
 		List<Driver> driverList = driverRepository2.findAll();
 
-		if(driverList.size() > 0) {
 			for (Driver driver : driverList) {
 				if (driver.getCab().getAvailable() == true && driverId > driver.getDriverId()) {
 					driver1 = driver;
 					driverId = driver.getDriverId();
 				}
 			}
-		}
+
 	   if(driver1 == null) throw new Exception("No cab available!");
 
 	   TripBooking tripBooking = new TripBooking();
