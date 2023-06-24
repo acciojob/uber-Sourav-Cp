@@ -100,7 +100,7 @@ public class CustomerServiceImpl implements CustomerService {
 	 Driver driver = tripBooking.getDriver();
 	 Cab cab = driver.getCab();
 
-	 int fare = driver.getCab().getPerKmRate()*tripBooking.getDistanceInKm();
+	 int fare = cab.getPerKmRate()*tripBooking.getDistanceInKm();
 	 tripBooking.setBill(fare);
 
 	 cab.setAvailable(true);
