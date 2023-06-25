@@ -107,5 +107,6 @@ public class CustomerServiceImpl implements CustomerService {
 	 tripBooking.setBill(fare);
 
 	 cab.setAvailable(true);
+	 tripBookingRepository2.save(tripBooking);
 	}
 }

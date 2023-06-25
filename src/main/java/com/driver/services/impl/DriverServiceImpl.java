@@ -45,9 +45,10 @@ public class DriverServiceImpl implements DriverService {
 	@Override
 	public void updateStatus(int driverId){
 		//Set the status of respective car to unavailable
-       Cab cab = cabRepository3.findById(driverId).get();
+       Driver driver = driverRepository3.findById(driverId).get();
 
-	   cab.setAvailable(false);
-	   cabRepository3.save(cab);
+
+	   driver.getCab().setAvailable(false);
+	   driverRepository3.save(driver);
 	}
 }
